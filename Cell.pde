@@ -48,6 +48,7 @@ class Cell {
     int x = this.i*w;
     int y = this.j*w;
     stroke(255);
+    strokeWeight(7);
     if (this.walls[0]) {
       line(x    , y    , x + w, y);
     }
@@ -66,6 +67,7 @@ class Cell {
       fill(255, 0, 255, 100);
       rect(x, y, w, w);
     }
+    strokeWeight(0);
   }
   
   JSONObject serialize(){

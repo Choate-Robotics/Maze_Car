@@ -1,17 +1,20 @@
 Car myCar;
 DriveSystem drive;
+Maze m;
 
 void setup(){
-  size(800,600);
+  size(640,640);
+  m = new Maze("data/maze1.json");
   myCar=new Car(100, 40, PI/2+.1);
-  //drive=new LineFollowerMKB(myCar);
-  drive=new DriveSystem(myCar);
+  drive=new MyDriveSystem(myCar);
+  //drive=new DriveSystem(myCar);
 }
 
 void draw(){
   background(0);
   // Draw obstacles before the car so that the sensors can work correctly.
-  drawPath();
+  //drawPath();
+  m.show();
   myCar.show();
   drive.drive();
   myCar.move();
