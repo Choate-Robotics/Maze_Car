@@ -1,4 +1,11 @@
-# CarDemo
+# Maze Car
+
+The goal of this challenge is to create a drive system that 
+will allow the car to navigate the maze. Use the right hand rule 
+idea of maze navigation. 
+
+![](Maze Solver.gif)
+
 Processing sketches to simulate a robotic car.
 
 ## API for the Car object
