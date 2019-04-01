@@ -9,6 +9,7 @@ class MyDriveSystem extends DriveSystem {
     noSense=0;
   }
   void drive() {
+
     //if (noSense<=0) {
 
     svr=myCar.sensorValueRight;
