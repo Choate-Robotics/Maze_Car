@@ -2,9 +2,75 @@
 
 The goal of this challenge is to create a drive system that 
 will allow the car to navigate the maze. Use the right or left hand rule 
-idea of maze navigation (source)[http://arcbotics.com/lessons/maze-solving-home-lessons/]. 
+idea of maze navigation [source](http://arcbotics.com/lessons/maze-solving-home-lessons/). 
 
 ![GIF of Robot Solving Maze](https://github.com/Choate-Robotics/Maze_Car/blob/master/Maze%20Solver.gif)
+
+### Hints
+
+You will want the robot to act differently at different times. To do this you will need some kind of *flag* variable that tells the robot which thing to do. You can set this up by making a class variable ```flag```. Here is an example of where the robot goes forward until it hits a wall and then goes backward.
+
+```
+class MyDriveSystem extends DriveSystem{
+
+  int approach=0;
+  int svr, svl;
+
+  MyDriveSystem(Car myCar){
+    super(myCar);
+  }
+
+  void drive(){
+
+    svr=myCar.sensorValueRight;
+    svl=myCar.sensorValueLeft;
+
+    if (approach==0){
+      if (svl>100 || svr>100){
+        approach==1;
+      }
+      myCar.setLeftSpeed(20);
+      myCar.setRightSpeed(20);
+    }
+    else
+    {
+      myCar.setLeftSpeed(-20);
+      myCar.setRightSpeed(-20);
+    }
+
+
+
+  }
+}
+```
+
+Here is DriveSystem that makes the robot go in a rough square. This example shows how to utilize the ```noSense``` variable to create actions that continue for a set number of ticks.
+
+```
+class MyDriveSystem extends DriveSystem {
+  
+  MyDriveSystem(Car myCar){
+    super(myCar);
+  }
+  
+  void drive() {
+    if (noSense<=0) {
+      if (approach==0) {
+        myCar.setLeftSpeed(30);
+        myCar.setRightSpeed(30);
+        approach=1;
+        setNoSense(40);
+      } else if (approach==1) {
+        myCar.setLeftSpeed(5);
+        myCar.setRightSpeed(-5);
+        setNoSense(30);
+        approach=0;
+      }
+    }
+    noSense--;
+  }
+}
+```
 
 Processing sketches to simulate a robotic car.
 
