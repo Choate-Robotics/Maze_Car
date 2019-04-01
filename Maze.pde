@@ -39,9 +39,9 @@ class Maze {
     w=json.getInt("w");
     cols=json.getInt("cols");
     rows=json.getInt("rows");
-    JSONArray jsonWalls=json.getJSONArray("walls");
-    for (int i=0; i<cols*rows; i++) {
-      JSONObject jsonCell=jsonWalls.getJSONObject(i);
+    JSONArray jsonGrid=json.getJSONArray("grid");
+    for (int i=0; i<jsonGrid.size(); i++) {
+      JSONObject jsonCell=jsonGrid.getJSONObject(i);
       Cell cell= new Cell(jsonCell);
       grid.add(cell);
     }
@@ -100,6 +100,7 @@ class Maze {
 
 
   void show() {
+    
     for (int i = 0; i < grid.size(); i++) {
       grid.get(i).show(w);
     }
