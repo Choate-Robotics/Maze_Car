@@ -10,7 +10,7 @@ class MyDriveSystem extends DriveSystem {
   }
   void drive() {
     println("driving");
-    if (noSense==0) {
+    if (noSense<=0) {
       print("using approach: ");
       println(approach);
       if (approach==0) {
@@ -19,8 +19,8 @@ class MyDriveSystem extends DriveSystem {
         if (svl>120) {
           approach=1;
         } else {
-          leftSpeed=30;
-          rightSpeed=30*svr/150+20;
+          leftSpeed=20;
+          rightSpeed=20*svr/150+9;
           println("right sensor:");
           println(myCar.sensorValueRight);
           println("left sensor:");
@@ -34,13 +34,13 @@ class MyDriveSystem extends DriveSystem {
           //backup
           myCar.setLeftSpeed(-20);
           myCar.setRightSpeed(-20);
-          setNoSense(30);
+          setNoSense(20);
           step=1;
         } else if (step==1) {
           // Turn Left
           myCar.setLeftSpeed(0);
-          myCar.setRightSpeed(30);
-          setNoSense(20);
+          myCar.setRightSpeed(20);
+          setNoSense(10);
           step=2;
         } else if (step==2) {
           //Move Ahead
